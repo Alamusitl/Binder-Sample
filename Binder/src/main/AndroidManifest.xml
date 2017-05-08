@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.owl.binder">
+
+    <permission
+        android:name="com.owl.binder.permission.ACCESS_BOOK_SERVICE"
+        android:protectionLevel="normal"/>
+    <permission android:name="com.owl.binder.PROVIDER"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".aidl.BookManagerActivity"
+            android:label="AIDL">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        </activity>
+
+        <service
+            android:name=".aidl.BookManagerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+        </service>
+
+        <provider
+            android:name=".provider.BookProvider"
+            android:authorities="com.owl.binder.provider"
+            android:permission="com.ksc.binder.PROVIDER"
+            android:process=":provider"/>
+
+        <activity
+            android:name=".provider.ProviderActivity"
+            android:label="Provider">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        </activity>
+
+        <service
+            android:name=".socket.TCPServerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":socket">
+        </service>
+
+        <activity
+            android:name=".socket.TcpClientActivity"
+            android:label="Socket">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
